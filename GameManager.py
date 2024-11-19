@@ -1,3 +1,5 @@
+import os
+
 from PrintGrid import printGrid
 
 class GameManager(object):
@@ -17,6 +19,8 @@ class GameManager(object):
       printGrid()
       caption = input()
       self.updateRound(self.Round + 1)
+    
+    os.system('cls')
   
   @classmethod
   def updateRound(self, value) :

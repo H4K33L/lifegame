@@ -1,3 +1,5 @@
+import os
+
 class printGrid :
 
     def __init__(self):
@@ -5,7 +7,9 @@ class printGrid :
 
     def printgrid(self):
         from GameManager import GameManager
-
+    
+        os.system('cls')
+        
         round = "Round " + str(GameManager.Round)
         lenght = len(GameManager.GameOfLife[0])
         height = len(GameManager.GameOfLife)
