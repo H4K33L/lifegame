@@ -1,5 +1,8 @@
+from PrintGrid import printGrid
+
 class GameManager(object):
-  GameOfLife = []
+  Round = 0
+  GameOfLife = [[0,1,0],[1,0,1]]
 
   def __new__(game):
     if not hasattr(game, 'instance'):
@@ -7,4 +10,14 @@ class GameManager(object):
     return game.instance
   
   def Start(self):
-    print("start")
+    #set grid
+    caption = ""
+    while (caption != "Q") :
+      # calculate
+      printGrid()
+      caption = input()
+      self.updateRound(self.Round + 1)
+  
+  @classmethod
+  def updateRound(self, value) :
+    self.Round = value

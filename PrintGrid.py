@@ -1,26 +1,25 @@
-from GameManager.py import game
-
 class printGrid :
 
     def __init__(self):
         self.printgrid()
 
     def printgrid(self):
-        round = "Round " + game.getRound
-        lenght = len(game.getGrid[0])
-        height = len(game.getGrid)
+        from GameManager import GameManager
+
+        round = "Round " + str(GameManager.Round)
+        lenght = len(GameManager.GameOfLife[0])
+        height = len(GameManager.GameOfLife)
 
         print(round + "_"*(lenght-len(round)))
 
         for line in range(height) :
             lineContent = ""
             for column in range(lenght) :
-                if game.getGrid[line][column] == 0 :
-                    lineContent += chr(219)
+                if GameManager.GameOfLife[line][column] == 0 :
+                    lineContent += "░"
                 else :
-                    lineContent += game.getGrid[line][column]
+                    lineContent += "█"
             print(lineContent)
-
 
         print("type Q to quit or press Enter.")
 
