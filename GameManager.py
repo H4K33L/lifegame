@@ -1,10 +1,11 @@
 import os
+from random import randint
 
 from PrintGrid import printGrid
 
 class GameManager(object):
   Round = 0
-  GameOfLife = [[0,1,0],[1,0,1]]
+  GameOfLife = []
 
   def __new__(game):
     if not hasattr(game, 'instance'):
@@ -12,7 +13,8 @@ class GameManager(object):
     return game.instance
   
   def Start(self):
-    #set grid
+    self.SetGrid()
+
     caption = ""
     while (caption != "Q") :
       # calculate
@@ -25,3 +27,27 @@ class GameManager(object):
   @classmethod
   def updateRound(self, value) :
     self.Round = value
+
+  def SetGrid(self) :
+    lenght = 0
+    while not lenght:
+        try:
+            lenght = int(input('Chose the size : '))
+            if lenght < 0 :
+               raise ValueError
+        except ValueError:
+            lenght = 0
+            print("That's not an option !")
+
+    output = []
+    for len in range(lenght) :
+      line= []
+      for height in range(lenght) :
+        line.append(randint(0,1))
+      output.append(line)
+
+    self.updateGameOfLife(output)
+
+  @classmethod
+  def updateGameOfLife(self, value) :
+    self.GameOfLife = value
