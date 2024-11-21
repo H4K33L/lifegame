@@ -2,7 +2,8 @@ class CycleDetection:
    
     def __init__(self, grid, history):
         self.CycleDetection(self, grid, history)
-        
+    
+    # Return True if the current grid is in the history    
     def CycleDetection(self, grid, history):
         currentAliveCellsList = self.GetAliveCellsList(grid)
         for previousGrid in history:
@@ -11,6 +12,7 @@ class CycleDetection:
                     return True
         return False
     
+    # Return True if both lists are the same
     def ListEquals (list1, list2):
         return list1 == list2
     
