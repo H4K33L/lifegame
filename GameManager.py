@@ -52,3 +52,14 @@ class GameManager(object):
   @classmethod
   def updateGameOfLife(self, value) :
     self.GameOfLife = value
+    
+  # Get all alive cells from the grid     
+  def GetAliveCellsList(self, grid):
+    aliveCellsList = []
+    
+    for i in range(len(grid)):
+      for j in range(len(grid)):
+        if grid[i][j] == 1:
+          aliveCellsList.append((i,j))
+
+    return aliveCellsList
