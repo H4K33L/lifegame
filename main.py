@@ -1,4 +1,5 @@
 from GameManager import GameManager
 
-GameManager.Start()
+gamemanager = GameManager()
 
+gamemanager.Start()
