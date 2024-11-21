@@ -2,6 +2,7 @@ import os
 from random import randint
 
 from PrintGrid import printGrid
+from NextStep import NextStep
 
 class GameManager(object):
   Round = 0
@@ -17,10 +18,10 @@ class GameManager(object):
 
     caption = ""
     while (caption != "Q") :
-      # calculate
       printGrid()
       caption = input()
       self.updateRound(self.Round + 1)
+      NextStep()
     
     os.system('cls')
   
