@@ -4,6 +4,7 @@ from random import randint
 from PrintGrid import PrintGrid
 from NextStep import NextStep
 from Save import Save
+from Load import Load
 
 class GameManager(object):
   Round = 0
@@ -15,9 +16,9 @@ class GameManager(object):
     return game.instance
   
   def Start(self):
-    caption = input("Enter L to load a party : ")
+    caption = input("Enter L to load a party or enter to start a new one : ")
     if caption == "L" :
-      Save.InterfaceLoad()
+      Load()
       caption = ""
     else :
       self.SetGrid()
@@ -27,13 +28,14 @@ class GameManager(object):
       PrintGrid()
       caption = input()
       if caption == "S" :
-        Save.InterfaceSave()
+        Save()
       elif caption == "L" :
-        Save.InterfaceLoad()
+        Load()
       else :
         self.updateRound(self.Round + 1)
         NextStep()
-    
+
+    Save()
     os.system('cls')
   
   @classmethod
@@ -65,7 +67,7 @@ class GameManager(object):
     self.GameOfLife = value
     
   # Get all alive cells from the grid
-  def GetAliveCellsList(self, grid):
+  def GetAliveCellsList(grid):
     aliveCellsList = []
     
     for i in range(len(grid)):

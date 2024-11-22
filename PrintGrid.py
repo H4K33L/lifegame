@@ -25,5 +25,5 @@ class PrintGrid :
                     lineContent += "██"
             print(lineContent)
 
-        print("type Q to quit, S to save or press Enter.")
+        print("type Q to quit, S to save, L to load or press Enter.")
 
