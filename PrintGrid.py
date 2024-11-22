@@ -15,18 +15,19 @@ class printGrid :
         lenght = len(GameManager.GameOfLife[0])
         height = len(GameManager.GameOfLife)
 
-        print(round + "_"*(lenght*2-len(round)))
+        print(" " + round + "▁"*(lenght*3-len(round)))
 
         for line in range(height) :
             lineContent = ""
             for column in range(lenght) :
                 if GameManager.GameOfLife[line][column] == 0 :
-                    lineContent += "⬜"
+                    lineContent += "\033[7m███\033[0m"
                 else :
-                    lineContent += "⬛"
-            print(lineContent)
+                    lineContent += "███"
+            print("▕"+ lineContent + "▏")
+        print(" "+ "▔"*(lenght*3))
         
         if GameManager.CycleDetected != -1:
-            print("Cycle detected on round " + str(GameManager.CycleDetected))
+            print("Cycle detected since round " + str(GameManager.CycleDetected))
         print("type Q to quit or press Enter.")
 

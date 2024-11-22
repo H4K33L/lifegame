@@ -15,6 +15,7 @@ class NextStep:
       
       # Get all alive cells from the grid
       aliveCellsList = GameManager.GetAliveCellsList(grid)
+      deadCellsCheckedList = []
       
       for aliveCell in aliveCellsList:
          
@@ -29,8 +30,10 @@ class NextStep:
          
          #Checks all neighbors of the dead neighbor cells
          for deadNeighbor in deadNeighborsList:
-            sub_neighbors = self.GetNeighborCells(grid, deadNeighbor[0], deadNeighbor[1])
-            sub_nAliveNeighbors = sub_neighbors[1]
+            if deadNeighbor not in deadCellsCheckedList:
+               deadCellsCheckedList.append(deadNeighbor)
+               sub_neighbors = self.GetNeighborCells(grid, deadNeighbor[0], deadNeighbor[1])
+               sub_nAliveNeighbors = sub_neighbors[1]
             
             # If there si 3 alive neighbors then the cell becomes alive
             if sub_nAliveNeighbors == 3:

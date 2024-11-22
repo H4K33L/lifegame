@@ -25,8 +25,8 @@ class GameManager(object):
       caption = input()
       self.updateRound(self.Round + 1)
       NextStep()
-      
-      self.CycleDetected = CycleDetection()
+      if self.CycleDetected == -1:
+        CycleDetection()
       
     os.system('cls')
   
