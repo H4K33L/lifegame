@@ -1,6 +1,6 @@
 import os
 
-class printGrid :
+class PrintGrid :
 
     def __init__(self):
         self.printgrid()
@@ -25,5 +25,5 @@ class printGrid :
                     lineContent += "██"
             print(lineContent)
 
-        print("type Q to quit or press Enter.")
+        print("type Q to quit, S to save or press Enter.")
 

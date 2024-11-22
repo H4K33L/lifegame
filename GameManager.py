@@ -1,8 +1,9 @@
 import os
 from random import randint
 
-from PrintGrid import printGrid
+from PrintGrid import PrintGrid
 from NextStep import NextStep
+from Save import Save
 
 class GameManager(object):
   Round = 0
@@ -14,14 +15,24 @@ class GameManager(object):
     return game.instance
   
   def Start(self):
-    self.SetGrid()
+    caption = input("Enter L to load a party : ")
+    if caption == "L" :
+      Save.InterfaceLoad()
+      caption = ""
+    else :
+      self.SetGrid()
+      caption = ""
 
-    caption = ""
     while (caption != "Q") :
-      printGrid()
+      PrintGrid()
       caption = input()
-      self.updateRound(self.Round + 1)
-      NextStep()
+      if caption == "S" :
+        Save.InterfaceSave()
+      elif caption == "L" :
+        Save.InterfaceLoad()
+      else :
+        self.updateRound(self.Round + 1)
+        NextStep()
     
     os.system('cls')
   
