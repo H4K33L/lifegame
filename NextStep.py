@@ -11,7 +11,7 @@ class NextStep:
       newgrid = grid
       
       # Get all alive cells from the grid
-      aliveCellsList = GameManager.GetAliveCellsList(grid)
+      aliveCellsList = self.GetAliveCellsList(grid)
       
       for aliveCell in aliveCellsList:
          
@@ -34,6 +34,18 @@ class NextStep:
                newgrid[deadNeighbor[0]][deadNeighbor[1]] = 1
 
       GameManager.updateGameOfLife(newgrid)  
+   
+   
+   # Get all alive cells from the grid     
+   def GetAliveCellsList(self, grid):
+      aliveCellsList = []
+    
+      for i in range(len(grid)):
+         for j in range(len(grid)):
+            if grid[i][j] == 1:
+               aliveCellsList.append((i,j))
+
+      return aliveCellsList
    
    
    # Get the list of the coordinates of all the dead neighbor cells
