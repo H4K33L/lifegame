@@ -2,8 +2,10 @@ import os
 from random import choice
 
 from CycleDetection import CycleDetection
-from PrintGrid import printGrid
+from PrintGrid import PrintGrid
 from NextStep import NextStep
+from Save import Save
+from Load import Load
 
 class GameManager(object):
   Round = 0
@@ -17,17 +19,28 @@ class GameManager(object):
     return game.instance
   
   def Start(self):
-    self.SetGrid()
+    caption = input("Enter L to load a party or enter to start a new one : ")
+    if caption == "L" :
+      Load()
+      caption = ""
+    else :
+      self.SetGrid()
+      caption = ""
 
-    caption = ""
     while (caption != "Q") :
-      printGrid()
+      PrintGrid()
       caption = input()
-      self.updateRound(self.Round + 1)
-      NextStep()
-      if self.CycleDetected == -1:
-        CycleDetection()
-      
+      if caption == "S" :
+        Save()
+      elif caption == "L" :
+        Load()
+      else :
+        self.updateRound(self.Round + 1)
+        NextStep()
+        if self.CycleDetected == -1:
+          CycleDetection()
+
+    Save()
     os.system('cls')
   
   @classmethod

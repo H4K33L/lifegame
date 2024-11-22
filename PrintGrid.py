@@ -1,6 +1,6 @@
 import os
 
-class printGrid :
+class PrintGrid :
 
     def __init__(self):
         self.printgrid()
@@ -29,5 +29,5 @@ class printGrid :
         
         if GameManager.CycleDetected != -1:
             print("Cycle detected since round " + str(GameManager.CycleDetected))
-        print("type Q to quit or press Enter.")
+        print("type Q to quit, S to save, L to load or press Enter.")
 
