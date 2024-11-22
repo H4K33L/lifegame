@@ -16,6 +16,6 @@ class Save :
         LastSave.append(len(GameManager.GameOfLife))
         LastSave.append(GameManager.GetAliveCellsList(GameManager.GameOfLife))
         LastSaveJson = json.dumps(LastSave)
-        File = open("save/"+Name+".json","x")
+        File = open("save/"+Name+".json","w")
         File.write(LastSaveJson)
         File.close()
