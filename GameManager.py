@@ -64,7 +64,7 @@ class GameManager(object):
   def updateGameOfLife(self, value) :
     self.GameOfLife = value
     
-  # Get all alive cells from the grid     
+  # Get all alive cells from the grid
   def GetAliveCellsList(self, grid):
     aliveCellsList = []
     
