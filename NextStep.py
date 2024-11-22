@@ -1,3 +1,6 @@
+import copy
+
+
 class NextStep:
    
    def __init__(self):
@@ -8,10 +11,10 @@ class NextStep:
       
       grid = GameManager.GameOfLife
 
-      newgrid = grid
+      newgrid = copy.deepcopy(grid)
       
       # Get all alive cells from the grid
-      aliveCellsList = self.GetAliveCellsList(grid)
+      aliveCellsList = GameManager.GetAliveCellsList(grid)
       
       for aliveCell in aliveCellsList:
          
@@ -33,31 +36,19 @@ class NextStep:
             if sub_nAliveNeighbors == 3:
                newgrid[deadNeighbor[0]][deadNeighbor[1]] = 1
 
-      GameManager.updateGameOfLife(newgrid)  
-   
-   
-   # Get all alive cells from the grid     
-   def GetAliveCellsList(self, grid):
-      aliveCellsList = []
-    
-      for i in range(len(grid)):
-         for j in range(len(grid)):
-            if grid[i][j] == 1:
-               aliveCellsList.append((i,j))
-
-      return aliveCellsList
-   
+      GameManager.updateHistory(aliveCellsList)
+      GameManager.updateGameOfLife(newgrid) 
    
    # Get the list of the coordinates of all the dead neighbor cells
    # Get the number of alive cells
-   def GetNeighborCells(self, grid, x, y):
-      neighbors = [(x-1,y-1),(x-1,y),(x-1,y+1),(x,y-1),(x,y+1),(x+1,y-1),(x+1,y),(x+1,y+1)]
+   def GetNeighborCells(self, grid, row, column):
+      neighbors = [(row-1,column-1),(row-1,column),(row-1,column+1),(row,column-1),(row,column+1),(row+1,column-1),(row+1,column),(row+1,column+1)]
 
       deadNeighborsList = []
       nAliveNeighbors = 0
 
       for neighborCell in neighbors:
-         if 0 <= neighborCell[0] < len(grid) and 0 <= neighborCell[1] < len(grid):
+         if 0 <= neighborCell[0] < len(grid) and 0 <= neighborCell[1] < len(grid[0]):
             if grid[neighborCell[0]][neighborCell[1]] == 1:
                nAliveNeighbors += 1
             

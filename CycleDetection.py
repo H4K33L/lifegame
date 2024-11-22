@@ -12,13 +12,15 @@ class CycleDetection:
         
         currentAliveCellsList = GameManager.GetAliveCellsList(grid)
         
-        for previousGrid in history:
-            if len(currentAliveCellsList) == len(previousGrid):
-                if self.ListEquals(currentAliveCellsList,previousGrid):
-                    return True
-        
-        return False
+        for roundIndex  in range(len(history)):
+            if len(currentAliveCellsList) == len(history[roundIndex]):
+                for cellIndex in range(len(history[roundIndex])):
+                    if currentAliveCellsList[cellIndex]!=history[roundIndex][cellIndex]:
+                        break
+                return roundIndex        
+                        
+        return -1
     
     # Return True if both lists are the same
-    def ListEquals (list1, list2):
+    def ListEquals (self, list1, list2):
         return list1 == list2

@@ -1,12 +1,15 @@
 import os
-from random import randint
+from random import choice
 
+from CycleDetection import CycleDetection
 from PrintGrid import printGrid
 from NextStep import NextStep
 
 class GameManager(object):
   Round = 0
   GameOfLife = []
+  History = []
+  CycleDetected = -1
 
   def __new__(game):
     if not hasattr(game, 'instance'):
@@ -22,7 +25,9 @@ class GameManager(object):
       caption = input()
       self.updateRound(self.Round + 1)
       NextStep()
-    
+      
+      self.CycleDetected = CycleDetection()
+      
     os.system('cls')
   
   @classmethod
@@ -44,7 +49,7 @@ class GameManager(object):
     for len in range(lenght) :
       line= []
       for height in range(lenght) :
-        line.append(randint(0,1))
+        line.append(choice([0,1]))
       output.append(line)
 
     self.updateGameOfLife(output)
@@ -52,14 +57,18 @@ class GameManager(object):
   @classmethod
   def updateGameOfLife(self, value) :
     self.GameOfLife = value
+  
+  @classmethod
+  def updateHistory(self, value) :
+    self.History.append(value)
     
-  # Get all alive cells from the grid     
-  def GetAliveCellsList(self, grid):
+  # Get the list of coordinates of all the alive cells from the grid
+  def GetAliveCellsList(grid):
     aliveCellsList = []
     
-    for i in range(len(grid)):
-      for j in range(len(grid)):
-        if grid[i][j] == 1:
-          aliveCellsList.append((i,j))
+    for row in range(len(grid)):
+      for column in range(len(grid)):
+        if grid[row][column] == 1:
+          aliveCellsList.append((row,column))
 
     return aliveCellsList
