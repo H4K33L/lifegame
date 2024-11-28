@@ -12,7 +12,7 @@ class CycleDetection:
         
         currentAliveCellsList = GameManager.GetAliveCellsList(grid)
         
-        for roundIndex  in range(len(history)-1):
+        for roundIndex in range(len(history)-1):
             if len(currentAliveCellsList) == len(history[len(history)-1-roundIndex]):
                 if currentAliveCellsList == history[len(history)-1-roundIndex]:
                     GameManager.CycleDetected = len(history)-1-roundIndex

@@ -32,7 +32,7 @@ class GameManager(object):
         self.SetGrid()
         caption = ""
 
-      while (caption != "Q"):
+      while (caption != "Q" and caption != "QUIT"):
         PrintGrid()
         caption = input()
         if caption == "S":
@@ -46,7 +46,11 @@ class GameManager(object):
           NextStep()
           if self.CycleDetected == -1:
             CycleDetection()
-
+      self.Round = 0
+      self.GameOfLife = []
+      self.History = []
+      self.CycleDetected = -1
+    
     os.system('cls' if os.name == 'nt' else 'clear')
     print("Program succesfully closed")
   
@@ -59,7 +63,7 @@ class GameManager(object):
     while not lenght:
         try:
             lenght = int(input('Chose the size : '))
-            if lenght < 0 :
+            if 500 < lenght < 0 :
                raise ValueError
         except ValueError:
             lenght = 0
