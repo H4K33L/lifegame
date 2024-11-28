@@ -1,6 +1,5 @@
 import copy
 
-
 class NextStep:
    
    def __init__(self):
@@ -30,14 +29,14 @@ class NextStep:
          
          #Checks all neighbors of the dead neighbor cells
          for deadNeighbor in deadNeighborsList:
-            if deadNeighbor not in deadCellsCheckedList:
+            if not deadNeighbor in deadCellsCheckedList:
                deadCellsCheckedList.append(deadNeighbor)
                sub_neighbors = self.GetNeighborCells(grid, deadNeighbor[0], deadNeighbor[1])
                sub_nAliveNeighbors = sub_neighbors[1]
             
-            # If there si 3 alive neighbors then the cell becomes alive
-            if sub_nAliveNeighbors == 3:
-               newgrid[deadNeighbor[0]][deadNeighbor[1]] = 1
+               # If there si 3 alive neighbors then the cell becomes alive
+               if sub_nAliveNeighbors == 3:
+                  newgrid[deadNeighbor[0]][deadNeighbor[1]] = 1
 
       GameManager.updateHistory(aliveCellsList)
       GameManager.updateGameOfLife(newgrid) 
