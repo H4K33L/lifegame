@@ -7,8 +7,10 @@ class PrintGrid :
 
     def printgrid(self):
         from GameManager import GameManager
-    
-        os.system('cls')
+
+        #Clear terminal
+        
+        os.system('cls' if os.name == 'nt' else 'clear')
         
 
         round = "Round " + str(GameManager.Round)

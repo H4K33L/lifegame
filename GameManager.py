@@ -19,29 +19,36 @@ class GameManager(object):
     return game.instance
   
   def Start(self):
-    caption = input("Enter L to load a party or enter to start a new one : ")
-    if caption == "L" :
-      Load()
-      caption = ""
-    else :
-      self.SetGrid()
-      caption = ""
-
-    while (caption != "Q") :
-      PrintGrid()
-      caption = input()
-      if caption == "S" :
-        Save()
-      elif caption == "L" :
+    caption = ""
+    while (caption != "QUIT"):
+      os.system('cls' if os.name == 'nt' else 'clear')
+      caption = input("Press L to load a game | Press enter to start a new game | Enter QUIT to close the program : ")
+      if caption == "L":
         Load()
+        caption = ""
+      elif caption == "QUIT":
+        break
       else :
-        self.updateRound(self.Round + 1)
-        NextStep()
-        if self.CycleDetected == -1:
-          CycleDetection()
+        self.SetGrid()
+        caption = ""
 
-    Save()
-    os.system('cls')
+      while (caption != "Q"):
+        PrintGrid()
+        caption = input()
+        if caption == "S":
+          Save()
+        elif caption == "L":
+          Load()
+        elif caption == "Q":
+          break
+        else :
+          self.updateRound(self.Round + 1)
+          NextStep()
+          if self.CycleDetected == -1:
+            CycleDetection()
+
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("Program succesfully closed")
   
   @classmethod
   def updateRound(self, value) :

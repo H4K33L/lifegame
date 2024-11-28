@@ -8,13 +8,13 @@ class Load :
 
     def InterfaceLoad(self) :
         from GameManager import GameManager
-        Files = os.listdir("save")
+        Files = os.listdir("saves")
         for i in Files :
-            print(i)
+            print(i[:-5])
         content = ""
-        while content not in Files :
+        while content+".json" not in Files :
             content = input("Enter Save name : " )
-        File = open("save/"+content,"r")
+        File = open("saves/"+content+".json","r")
         LoadSave = File.read()
         File.close()
         LastSave = json.loads(LoadSave)
