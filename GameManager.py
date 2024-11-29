@@ -21,10 +21,8 @@ class GameManager(object):
   def Start(self):
     caption = ""
     while (caption != "QUIT"):
-      self.Round = 0
-      self.GameOfLife = []
-      self.History = []
-      self.CycleDetected = -1
+      self.updateRound(0)
+      self.updateCycleDetected()
       os.system('cls' if os.name == 'nt' else 'clear')
       caption = input("Press L to load a game | Press enter to start a new game | Enter QUIT to close the program : ")
       if caption == "L":
@@ -36,7 +34,7 @@ class GameManager(object):
         self.SetGrid()
         caption = ""
 
-      while (caption != "Q" and caption != "QUIT"):
+      while (caption != "Q"):
         PrintGrid()
         caption = input()
         if caption == "S":
@@ -58,6 +56,10 @@ class GameManager(object):
   @classmethod
   def updateRound(self, value) :
     self.Round = value
+
+  @classmethod
+  def updateCycleDetected(self) :
+    self.CycleDetected = -1
 
   def SetGrid(self) :
     lenght = 0
