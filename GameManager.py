@@ -22,7 +22,8 @@ class GameManager(object):
     caption = ""
     while (caption != "QUIT"):
       self.updateRound(0)
-      self.updateCycleDetected()
+      self.resetCycleDetected()
+      self.resetHistory()
       os.system('cls' if os.name == 'nt' else 'clear')
       caption = input("Press L to load a game | Press enter to start a new game | Enter QUIT to close the program : ")
       if caption == "L":
@@ -58,15 +59,19 @@ class GameManager(object):
     self.Round = value
 
   @classmethod
-  def updateCycleDetected(self) :
+  def resetCycleDetected(self) :
     self.CycleDetected = -1
+    
+  @classmethod
+  def resetHistory(self) :
+    self.History = []
 
   def SetGrid(self) :
     lenght = 0
     while not lenght:
         try:
             lenght = int(input('Chose the size : '))
-            if 500 < lenght < 0 :
+            if not 251 > lenght > 0  :
                raise ValueError
         except ValueError:
             lenght = 0
