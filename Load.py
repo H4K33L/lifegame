@@ -3,22 +3,22 @@ import os
 
 class Load:
     def __init__(self):
-        # Initialize the Load object and call the InterfaceLoad method
+        """
+        input : None
+        output : None
+        Initialize the Load object and call the InterfaceLoad method
+        """ 
         self.InterfaceLoad()
 
     def InterfaceLoad(self):
-        # Import GameManager class from GameManager module
         from GameManager import GameManager
         
+        # List all files in the "saves" directory and let the let the user chose with he would open
         print("All Saved Games : ")
-        # List all files in the "saves" directory
         Files = os.listdir("saves")
-        # Print the names of save files without the ".json" extension
         for i in Files:
             print(i[:-5])
-        
         content = ""
-        # Loop until a valid save file name is entered
         while content + ".json" not in Files:
             content = input("Enter Save name: ")
         
@@ -31,10 +31,13 @@ class Load:
         LastSave = json.loads(LoadSave)
 
         # Error cases
-
-        GameManager.updateRound(LastSave[0])
-        Grid = self.GridRegen(LastSave[1], LastSave[2])
-        GameManager.updateGameOfLife(Grid)
+        if 3 != len(LastSave):
+            GameManager.updateRound(0)
+            GameManager.updateGameOfLife([[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,1,1,0,0,0,0],[0,0,0,0,1,1,0,0,0,0],[0,0,0,0,1,1,0,0,0,0],[0,0,0,0,1,1,0,0,0,0],[0,0,0,0,1,1,0,0,0,0],[0,0,1,1,0,0,1,1,0,0],[0,0,1,1,0,0,1,1,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0]])
+        else:
+            GameManager.updateRound(LastSave[0])
+            Grid = self.GridRegen(LastSave[1], LastSave[2])
+            GameManager.updateGameOfLife(Grid)
 
     def GridRegen(self, length, position):
         """
@@ -49,7 +52,7 @@ class Load:
         elif len(position) > length*length :
             return [[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,1,0,0,0,0],[0,0,0,0,1,0,0,0,0],[0,0,0,1,0,1,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0]]
         for cordinate in position :
-            if coordinate[0] < 0 or coordinate[0] > length-1 or coordinate[1] < 0 or coordinate[1] > length-1 :
+            if cordinate[0] < 0 or cordinate[0] > length-1 or cordinate[1] < 0 or cordinate[1] > length-1 :
                 return [[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,1,0,0,0,0,1,0,0],[0,0,0,1,0,0,1,0,0,0],[0,0,0,0,1,1,0,0,0,0],[0,0,0,0,1,1,0,0,0,0],[0,0,0,1,0,0,1,0,0,0],[0,0,1,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0]]
         # Regenerate the grid based on saved length and alive cell positions
         Grid = []

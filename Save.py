@@ -2,6 +2,11 @@ import json
 
 class Save:
     def __init__(self):
+        """
+        input : None
+        output : None
+        Initialize the Save object and call the InterfaceSave method
+        """ 
         self.InterfaceSave()
       
     def InterfaceSave(self):
