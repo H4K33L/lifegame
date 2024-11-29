@@ -2,7 +2,7 @@
 
 Description
 ------------
-This project implements Conway's Game of Life, a cellular automaton simulation. The game is played on an n x n grid where each cell is either alive or dead. The state of each cell in the next generation is determined by its current state and the states of its eight neighbors.
+This project implements Conway's Game of Life, a cellular automaton simulation. The game is played on an n x n grid where each cell is either alive or dead. The state of each cell in the next generation is determined by its current state and the states of its eight neighbors. We also implemented a cycle detection method, Once a cycle is detected you will know the round when it started.
 
 ### Installation
 
