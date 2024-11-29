@@ -38,6 +38,8 @@ class Load:
             GameManager.updateRound(LastSave[0])
             Grid = self.GridRegen(LastSave[1], LastSave[2])
             GameManager.updateGameOfLife(Grid)
+            GameManager.resetHistory()
+            GameManager.resetCycleDetected()
 
     def GridRegen(self, length, position):
         """
