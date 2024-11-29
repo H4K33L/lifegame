@@ -21,6 +21,10 @@ class GameManager(object):
   def Start(self):
     caption = ""
     while (caption != "QUIT"):
+      self.Round = 0
+      self.GameOfLife = []
+      self.History = []
+      self.CycleDetected = -1
       os.system('cls' if os.name == 'nt' else 'clear')
       caption = input("Press L to load a game | Press enter to start a new game | Enter QUIT to close the program : ")
       if caption == "L":
@@ -46,10 +50,7 @@ class GameManager(object):
           NextStep()
           if self.CycleDetected == -1:
             CycleDetection()
-      self.Round = 0
-      self.GameOfLife = []
-      self.History = []
-      self.CycleDetected = -1
+      
     
     os.system('cls' if os.name == 'nt' else 'clear')
     print("Program succesfully closed")

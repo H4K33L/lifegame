@@ -31,6 +31,5 @@ class PrintGrid :
         
         if GameManager.CycleDetected != -1:
             print("Cycle detected since round " + str(GameManager.CycleDetected))
-            print(GameManager.History)
         print("type Q to quit, S to save, L to load or press Enter.")
 
