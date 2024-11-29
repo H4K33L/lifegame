@@ -66,11 +66,11 @@ class GameManager(object):
     while not lenght:
         try:
             lenght = int(input('Chose the size : '))
-            if 500 < lenght < 0 :
+            if 250 < lenght < 0 :
                raise ValueError
         except ValueError:
             lenght = 0
-            print("That's not an option !")
+            print("That's not an option ! max value 250.")
 
     output = []
     for len in range(lenght) :
